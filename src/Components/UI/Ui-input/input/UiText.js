@@ -1,4 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { txtActions } from '../../../store/text';
+
 import textCtx from '../../../store/txtCtx';
 
 function UiText(props) {
@@ -10,17 +13,27 @@ function UiText(props) {
 
 	const ctx = useContext(textCtx);
 
+	const uTxt = useSelector(state => state.uTxt);
+
+	const dispatch = useDispatch();
+	
+	
 	const userTextChangeHandler = (e) => {
+		
+		
 		if (e.nativeEvent.inputType === 'deleteContentBackward') {
 			setdeletedText(e.target.value);
 			setDelTxtState(true);
 		}
-
+		
 		ctx.textInput.setTxtState(true);
 		setIsTouched(true);
 		setUserText(e.target.value);
+		
+		// ctx.textInput.setUTxt(e.target.value);
+		dispatch(txtActions.setUTxt(e.target.value));
+		console.log(uTxt);
 
-		ctx.textInput.setUTxt(e.target.value);
 	};
 
 	useEffect(() => {
@@ -75,6 +88,7 @@ function UiText(props) {
 				id="userText"
 				placeholder="Type your text here"
 				spellCheck="false"
+				value={uTxt}
 				onChange={userTextChangeHandler}
 			/>
 		</section>

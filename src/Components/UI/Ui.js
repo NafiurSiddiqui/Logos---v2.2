@@ -1,23 +1,23 @@
+import { Provider } from 'react-redux';
 import Header from '../Header';
-import { TextCtxProvider } from '../store/txtCtx';
+import store from '../store';
 import UiDisplay from './Ui-display/UiDisplay';
 import UserInput from './Ui-input/input/UserInput';
 
 function Ui() {
-	
 	document.body.classList.add('ui-body');
 
 	return (
 		<>
 			<Header className="ui-logo" />
-			<TextCtxProvider>
+			<Provider store={store}>
 				<main className="container">
 					<section className="ui-container">
 						<UserInput />
 						<UiDisplay />
 					</section>
 				</main>
-			</TextCtxProvider>
+			</Provider>
 		</>
 	);
 }
