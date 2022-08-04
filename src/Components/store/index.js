@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import txtReducers from "./text";
+import txtSliceReducer from './textSlice';
 
 
 //configure store here
 
-const store  = configureStore({
+export const store  = configureStore({
     //states
     reducer:{
-        txt:txtReducers
+        txt:txtSliceReducer
     }
 });
 
 
-export default store;
