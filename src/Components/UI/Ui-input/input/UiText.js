@@ -1,35 +1,60 @@
-import { useContext, useEffect, useState } from 'react';
-import textCtx from '../../../store/txtCtx';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { txtActions } from '../../../store/textSlice';
+// import { setUser, user } from '../../../store/textSlice';
 
 function UiText(props) {
-	const [userText, setUserText] = useState('');
-	const [deletedText, setdeletedText] = useState('');
-	const [delTxtState, setDelTxtState] = useState(false);
-	const [isTouched, setIsTouched] = useState(false);
-	const [storeText, setStoreText] = useState();
 
-	const ctx = useContext(textCtx);
+	const {uTxt,txtState, storageText,isTouched, storageStatus, delTxtState } = useSelector(state => state.txt);
+	
+	// const [userText, setUserText] = useState('');
+	// const [deletedText, setdeletedText] = useState('');
+	// const [delTxtState, setDelTxtState] = useState(false);
+	// const [isTouched, setIsTouched] = useState(false);
+	// const [storeText, setStoreText] = useState();
 
+	// const ctx = useContext(textCtx);
+
+	
+	const dispatch = useDispatch();
+	
 	const userTextChangeHandler = (e) => {
+		
+		
 		if (e.nativeEvent.inputType === 'deleteContentBackward') {
-			setdeletedText(e.target.value);
-			setDelTxtState(true);
+			// setdeletedText(e.target.value);
+			// setDelTxtState(true);
+			dispatch(txtActions.setDelTxtState(true));
 		}
+		
+		
 
-		ctx.textInput.setTxtState(true);
-		setIsTouched(true);
-		setUserText(e.target.value);
-
-		ctx.textInput.setUTxt(e.target.value);
+		dispatch(txtActions.setTxtState(true));
+		dispatch(txtActions.setIsTouched(true))
+	
+		// setIsTouched(true);
+		// setUserText(e.target.value);
+		
+	
+		dispatch(txtActions.setUtxt(e.target.value));
+		
 	};
+	
 
 	useEffect(() => {
-		if (userText.length >= 20) {
+		
+	
+		// if (userText.length >= 20) {
+		// 	alert(
+		// 		`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
+		// 	);
+		// }
+		if (isTouched && uTxt.length >= 20) {
 			alert(
 				`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
 			);
 		}
-	}, [userText]);
+	}, [isTouched, uTxt]);
 
 	useEffect(() => {
 		const test = 'test';
@@ -38,32 +63,43 @@ function UiText(props) {
 			localStorage.setItem(test, test);
 			localStorage.removeItem(test);
 
-			ctx.textInput.setStorageStatus(true);
+			dispatch(txtActions.setStorageStatus(true));
 
-			if (userText.length > 0) {
-				setStoreText(localStorage.setItem('storeText', userText));
+			// if (userText.length > 0) {
+			// localStorage.setItem('storeText', userText);
+			// }
+			if (uTxt.length > 0) {
+			localStorage.setItem('storeText', uTxt);
+			dispatch(txtActions.setDelTxtState(false));
 			}
-
-			//? do you need this following two line
-
-			setStoreText(localStorage.getItem('storeText'));
-			// props.captureStorageText(storeText);
-			ctx.textInput.setStorageText(storeText);
-
+		
+			dispatch(txtActions.setStorageText(localStorage.getItem('storeText')));
 			//local storgae clearance
-			if (isTouched && userText.length === 0) {
+			// if (isTouched && userText.length === 0) {
+			// 	localStorage.clear();
+			// 	setIsTouched(false);
+			// 	// ctx.textInput.setTxtState(false);
+			// 	dispatch(txtActions.setTxtState(false));
+			// }
+			if (isTouched && uTxt.length === 0) {
 				localStorage.clear();
-
-				ctx.textInput.setTxtState(false);
+				// setIsTouched(false);
+				// ctx.textInput.setTxtState(false);
+				dispatch(txtActions.setIsTouched(false))
+				dispatch(txtActions.setTxtState(false));
 			}
+
 		} catch (e) {
-			ctx.textInput.setStorageStatus(false);
+			// ctx.textInput.setStorageStatus(false);
+			dispatch(txtActions.setStorageStatus(false));
 		}
 
-		ctx.textInput.setDelTxtState(delTxtState);
+		// ctx.textInput.setDelTxtState(delTxtState);
 
-		ctx.textInput.setUTxt(userText);
-	}, [props, userText, deletedText, delTxtState, storeText, isTouched, ctx]);
+		// ctx.textInput.setUTxt(userText);
+	}, [dispatch, isTouched, uTxt]);
+
+	console.table(`uTxt: ${uTxt}, txtState: ${txtState}, storageText:${storageText}, delTxtState: ${delTxtState}, storageStatus: ${storageStatus}, isTouched: ${isTouched}`);
 
 	return (
 		<section
