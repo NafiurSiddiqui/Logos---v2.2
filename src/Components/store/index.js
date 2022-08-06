@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import fontSliceReducer from "./fontSlice";
 import txtSliceReducer from './textSlice';
 
 
@@ -7,8 +8,11 @@ import txtSliceReducer from './textSlice';
 export const store  = configureStore({
     //states
     reducer:{
-        txt:txtSliceReducer
+        txt:txtSliceReducer,
+        font:fontSliceReducer
     }
 });
+
+
 
 
