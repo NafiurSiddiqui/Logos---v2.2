@@ -99,7 +99,7 @@ function UiText(props) {
 		// ctx.textInput.setUTxt(userText);
 	}, [dispatch, isTouched, uTxt]);
 
-	console.table(`uTxt: ${uTxt}, txtState: ${txtState}, storageText:${storageText}, delTxtState: ${delTxtState}, storageStatus: ${storageStatus}, isTouched: ${isTouched}`);
+	
 
 	return (
 		<section

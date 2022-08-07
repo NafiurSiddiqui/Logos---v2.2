@@ -1,7 +1,10 @@
 import { useContext, useState } from 'react';
+import { useSelector } from 'react-redux/es/exports';
 import ImagesBtn from '../../../Images';
+import { setFontFamily, setFontState } from '../../../store/fontSlice';
 import textCtx from '../../../store/txtCtx';
 import BtnFont from './BtnFont';
+
 
 const buttons = [
 	{
@@ -55,6 +58,11 @@ const buttons = [
 ];
 
 function UiFonts(props) {
+
+	const { fontFamily, fontState} = useSelector(state => state.font);
+
+	console.log(fontFamily, fontState);
+
 	const [activeButtonId, setActiveButtonId] = useState(null);
 
 	const ctx = useContext(textCtx);
@@ -65,9 +73,11 @@ function UiFonts(props) {
 			//get the fontName
 			const targetClass = e.target.classList[1];
 
-			ctx.fontInput.setFontFamily(targetClass);
-
-			ctx.fontInput.setFontState(true);
+			// ctx.fontInput.setFontFamily(targetClass);
+			setFontFamily(targetClass)
+			// ctx.fontInput.setFontState(true);
+			setFontState(true);
+			
 			setActiveButtonId(targetClass);
 		}
 		//if--img
