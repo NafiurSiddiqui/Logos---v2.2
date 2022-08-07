@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import fontSliceReducer from "./fontSlice";
+
 import txtSliceReducer from './textSlice';
 
 
