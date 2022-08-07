@@ -14,7 +14,6 @@ function BtnColor(props) {
 
 	useEffect(() => {
 
-
 		if ((props.bulbClicked && props.bulbActive) ||(props.bulbClicked && props.bulbActive && !props.hoverActive )) {
 			//for TextShadow
 			settextShadowGlow(`0 0 4px white, 0 0 4px ${props.colorActive}, 0 0 8px ${props.colorActive},

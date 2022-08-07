@@ -1,10 +1,9 @@
-import { useContext, useState } from 'react';
-import { useSelector } from 'react-redux/es/exports';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux/es/exports';
 import ImagesBtn from '../../../Images';
 import { setFontFamily, setFontState } from '../../../store/fontSlice';
-import textCtx from '../../../store/txtCtx';
-import BtnFont from './BtnFont';
 
+import BtnFont from './BtnFont';
 
 const buttons = [
 	{
@@ -57,38 +56,45 @@ const buttons = [
 	},
 ];
 
+
+
 function UiFonts(props) {
 
-	const { fontFamily, fontState} = useSelector(state => state.font);
-
-	console.log(fontFamily, fontState);
+	const dispatch =  useDispatch();
 
 	const [activeButtonId, setActiveButtonId] = useState(null);
 
-	const ctx = useContext(textCtx);
+	// const ctx = useContext(textCtx);
 
 	const fontHandler = (e) => {
 		//if--click is list
 		if (e.target.localName === 'li') {
 			//get the fontName
 			const targetClass = e.target.classList[1];
+			
 
 			// ctx.fontInput.setFontFamily(targetClass);
-			setFontFamily(targetClass)
-			// ctx.fontInput.setFontState(true);
-			setFontState(true);
+			// setFontFamily(targetClass);
+			dispatch(setFontFamily(targetClass));
+			dispatch(setFontState(true));
 			
+			// ctx.fontInput.setFontState(true);
+			// setFontState(true);
+
 			setActiveButtonId(targetClass);
 		}
 		//if--img
 		if (e.target.localName === 'img') {
 			const targetId = e.target.id;
 
-			ctx.fontInput.setFontFamily(targetId);
-			ctx.fontInput.setFontState(true);
+			// ctx.fontInput.setFontFamily(targetId);
+			// ctx.fontInput.setFontState(true);
+			dispatch(setFontFamily(targetId));
+			dispatch(setFontState(true));
 			setActiveButtonId(targetId);
 		}
 	};
+	// console.log(fontFamily, fontState);
 
 	return (
 		<section
