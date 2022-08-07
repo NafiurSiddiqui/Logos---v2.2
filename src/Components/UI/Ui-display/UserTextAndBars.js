@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import textCtx from '../../store/txtCtx';
 
 const windowWidth = window.innerWidth;
@@ -6,6 +7,7 @@ const windowWidth = window.innerWidth;
 
 
 function UserTextAndBars(props) {
+	
 	const [showBars, setShowBars] = useState(false);
 	const [displayText, setDisplayText] = useState('Your Text');
 	//STYLING STATE
@@ -13,16 +15,19 @@ function UserTextAndBars(props) {
 
 	const ctx = useContext(textCtx);
 
+	const {uTxt,txtState, storageText,isTouched, storageStatus, delTxtState } = useSelector(state => state.txt);
+
 
 	let letterHeight = ctx.dimension.height;
-	let txtState = ctx.textInput.txtState;
+	// let txtState = ctx.textInput.txtState;
 	let userText = ctx.textInput.uTxt;
 	let storeText = ctx.textInput.storageText;
-	const storageStatus = ctx.textInput.storageStatus;
+	// const storageStatus = ctx.textInput.storageStatus;
 	//color states
 	const neonState = props.neonSwitchState;
 	const colorActive = ctx.colorInput.colorActive;
-
+	
+	// console.log(uTxt);
 
 	
 	useEffect(() => {

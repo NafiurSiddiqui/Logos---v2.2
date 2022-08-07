@@ -22,39 +22,28 @@ function UiText(props) {
 		
 		
 		if (e.nativeEvent.inputType === 'deleteContentBackward') {
-			// setdeletedText(e.target.value);
-			// setDelTxtState(true);
+		
 			dispatch(txtActions.setDelTxtState(true));
+			// uTxt.length === 1 && console.log('Yes it is!');
+			uTxt.length <= 1 && dispatch(txtActions.setIsTouched(false));
 		}
 		
-		
-
 		dispatch(txtActions.setTxtState(true));
 		dispatch(txtActions.setIsTouched(true))
-	
-		// setIsTouched(true);
-		// setUserText(e.target.value);
-		
-	
 		dispatch(txtActions.setUtxt(e.target.value));
 		
 	};
 	
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-	
-		// if (userText.length >= 20) {
-		// 	alert(
-		// 		`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
-		// 	);
-		// }
-		if (isTouched && uTxt.length >= 20) {
-			alert(
-				`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
-			);
-		}
-	}, [isTouched, uTxt]);
+
+	// 	if (isTouched && uTxt.length >= 20) {
+	// 		alert(
+	// 			`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
+	// 		);
+	// 	}
+	// }, [isTouched, uTxt]);
 
 	useEffect(() => {
 		const test = 'test';
@@ -65,38 +54,33 @@ function UiText(props) {
 
 			dispatch(txtActions.setStorageStatus(true));
 
-			// if (userText.length > 0) {
-			// localStorage.setItem('storeText', userText);
-			// }
+		
 			if (uTxt.length > 0) {
 			localStorage.setItem('storeText', uTxt);
 			dispatch(txtActions.setDelTxtState(false));
 			}
 		
 			dispatch(txtActions.setStorageText(localStorage.getItem('storeText')));
-			//local storgae clearance
-			// if (isTouched && userText.length === 0) {
-			// 	localStorage.clear();
-			// 	setIsTouched(false);
-			// 	// ctx.textInput.setTxtState(false);
-			// 	dispatch(txtActions.setTxtState(false));
-			// }
+			
 			if (isTouched && uTxt.length === 0) {
 				localStorage.clear();
-				// setIsTouched(false);
-				// ctx.textInput.setTxtState(false);
+			
 				dispatch(txtActions.setIsTouched(false))
 				dispatch(txtActions.setTxtState(false));
 			}
 
 		} catch (e) {
-			// ctx.textInput.setStorageStatus(false);
+		
 			dispatch(txtActions.setStorageStatus(false));
 		}
 
-		// ctx.textInput.setDelTxtState(delTxtState);
+		if (isTouched && uTxt.length >= 20) {
+			alert(
+				`If you need more than 20 characters of text, Please contact us: 📞 +14-999-876-42`
+			);
+		}
 
-		// ctx.textInput.setUTxt(userText);
+	
 	}, [dispatch, isTouched, uTxt]);
 
 	

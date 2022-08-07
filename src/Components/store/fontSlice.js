@@ -18,5 +18,6 @@ const fontSlice = createSlice({
 	},
 });
 
-export const { setFontFamily, setFontState } = fontSlice.actions;
+// export const { setFontFamily, setFontState } = fontSlice.actions;
+export const {setFontFamily, setFontState} = fontSlice.actions;
 export default fontSlice.reducer;
