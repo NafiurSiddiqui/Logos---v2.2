@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { txtActions } from '../../../store/textSlice';
-// import { setUser, user } from '../../../store/textSlice';
+
 
 function UiText(props) {
 
-	const {uTxt,txtState, storageText,isTouched, storageStatus, delTxtState } = useSelector(state => state.txt);
+	const {uTxt,isTouched} = useSelector(state => state.txt);
 	
 	// const [userText, setUserText] = useState('');
 	// const [deletedText, setdeletedText] = useState('');

@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setColorActive } from '../../../store/colorSlice';
-import textCtx from '../../../store/txtCtx';
 import BtnColor from './BtnColor';
 
 const colorBulbs = [
@@ -99,7 +98,7 @@ function UiColors(props) {
 	const [targetColorCode, setTargetColorCode] = useState(null);
 
 	//MouseOver state?, get the associated color code and set it
-	const ctx = useContext(textCtx);
+	// const ctx = useContext(textCtx);
 
 	const {colorActive} = useSelector(state => state.color);
 	const dispatch = useDispatch();
@@ -119,8 +118,7 @@ function UiColors(props) {
 	//Activating button
 	const bulbClickHandler = (e) => {
 		setBulbClicked(false);
-		// props.getActiveColor(null);
-		// ctx.colorInput.setColorActive(null);
+
 		setColorActive(null);
 		if (e.target.localName === 'i') {
 			//To stop double click on <i> el
@@ -129,13 +127,12 @@ function UiColors(props) {
 			const parentColorCode = e.target.parentElement.dataset.colorcode;
 
 			
-			// ctx.colorInput.setColorActive(parentColorCode);
+	
 			dispatch(setColorActive(parentColorCode));
 			setBulbClicked(true);
 		} else {
 			setBulbClicked(true);
 	
-			// ctx.colorInput.setColorActive(e.target.dataset.colorcode);
 			;
 			dispatch(setColorActive(e.target.dataset.colorcode));
 		}
@@ -163,7 +160,6 @@ function UiColors(props) {
 							colorCode={bulb.colorCode}
 							colorName={bulb.colorName}
 							onClick={bulbClickHandler}
-							// colorActive={ctx.colorInput.colorActive}
 							colorActive={colorActive}
 							bulbClicked={bulbClicked}
 							bulbActive={currentBulb}

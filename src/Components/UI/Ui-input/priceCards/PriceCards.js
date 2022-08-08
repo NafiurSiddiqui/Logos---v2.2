@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import textCtx from '../../../store/txtCtx';
 import PriceCard from './PriceCard';
 
@@ -9,6 +10,7 @@ const init = {
 }
 
 
+
 function PriceCards(props) {
 
 	const [pricing, setPricing] = useState(init);
@@ -17,41 +19,62 @@ function PriceCards(props) {
 	
 	const ctx = useContext(textCtx);
 	
+	const {uTxt, storageStatus, storageText: storeTxt} = useSelector(state => state.txt);
+	const {height:letterHeight} = useSelector(state => state.dimension);
+	const {debounceStat} = useSelector(state => state.debouncer);
+	
 	
 	let userText;
 	let storageText = '---';
 
-	const letterHeight = ctx.dimension.height;
+	// const letterHeight = ctx.dimension.height;
+	// const letterHeight = dimension.height;
 	let width = null;
-	let storageStatus = ctx.textInput.storageStatus;
-	
-	const debounceStat = ctx.debouncer.debounceStatus;;
+	// let storageStatus = ctx.textInput.storageStatus;
+	// let storageStatus = txtSlice.storageStatus;
+	// const debounceStat = ctx.debouncer.debounceStatus;
+
+	// console.log(debounceStat);
 
 	
 
 
 
-	ctx.textInput.uTxt === undefined ? userText = '---' : userText = ctx.textInput.uTxt;
+	// ctx.textInput.uTxt === undefined ? userText = '---' : userText = ctx.textInput.uTxt;
 	
+	uTxt === null || undefined ?  userText = '---' : userText = uTxt; 
 
 	
-	if (ctx.textInput.uTxt !== undefined){
-		width = ctx.textInput.uTxt.length;
+	
+	// if (ctx.textInput.uTxt !== undefined){
+	// 	width = ctx.textInput.uTxt.length;
+		
+	// }
+
+	if (uTxt !== null || undefined){
+		width = uTxt.length;
 		
 	}
 
 
 	
-	if (storageStatus !== false && ctx.textInput.storageText){
-		storageText = ctx.textInput.storageText;
-		width = storageText.length;
+	// if (storageStatus !== false && ctx.textInput.storageText){
+	// 	storageText = ctx.textInput.storageText;
+	// 	width = storageText.length;
 	
+	// }
+
+	if (storageStatus !== false && storeTxt){
+		storageText = storeTxt;
+		width = storeTxt.length;
 	}
 	
 	
 	
 	
-	const storageTextStatus = storageText === '---'; 
+	// const storageTextStatus = storageText === '---'; 
+
+	const storageTextStatus = storeTxt === '---'; 
 
 	//Debounce true? calculate this.
 	useEffect(() => {

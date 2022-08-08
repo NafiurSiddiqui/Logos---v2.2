@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDebounceState } from '../../store/debounceSlice';
+import { setWidth } from '../../store/dimension';
 import textCtx from '../../store/txtCtx';
 
 const windowWidth = window.innerWidth;
@@ -9,23 +11,34 @@ const windowWidth = window.innerWidth;
 function UserTextAndBars(props) {
 	
 	const [showBars, setShowBars] = useState(false);
-	const [displayText, setDisplayText] = useState('Your Text');
+	const [displayText, setDisplayText] = useState('Your Text' );
 	//STYLING STATE
 	const [largeFont, setLargeFont] = useState();
 
 	const ctx = useContext(textCtx);
 
-	const {uTxt,txtState, storageText,isTouched, storageStatus, delTxtState } = useSelector(state => state.txt);
+	const {uTxt,txtState, storageText:storeText,isTouched, storageStatus } = useSelector(state => state.txt);
+
+	console.log(isTouched);
+
+	const {height:letterHeight, width} = useSelector(state => state.dimension);
+
+	const { fontFamily } = useSelector(state => state.font);
+
+	const {colorActive} = useSelector(state => state.color);
+	const neonState = props.neonSwitchState;
 
 
-	let letterHeight = ctx.dimension.height;
+	const dispatch = useDispatch();
+
+	// let letterHeight = ctx.dimension.height;
+
 	// let txtState = ctx.textInput.txtState;
-	let userText = ctx.textInput.uTxt;
-	let storeText = ctx.textInput.storageText;
+	// let userText = ctx.textInput.uTxt;
+	// let storeText = ctx.textInput.storageText;
 	// const storageStatus = ctx.textInput.storageStatus;
 	//color states
-	const neonState = props.neonSwitchState;
-	const colorActive = ctx.colorInput.colorActive;
+	// const colorActive = ctx.colorInput.colorActive;
 	
 	// console.log(uTxt);
 
@@ -33,9 +46,12 @@ function UserTextAndBars(props) {
 	useEffect(() => {
 		if (
 		
-			ctx.fontInput.fontFamily === 'RasterSlice' ||
-			ctx.fontInput.fontFamily === 'Amsterdam' ||
-			ctx.fontInput.fontFamily === 'Orbitron'
+			// ctx.fontInput.fontFamily === 'RasterSlice' ||
+			// ctx.fontInput.fontFamily === 'Amsterdam' ||
+			// ctx.fontInput.fontFamily === 'Orbitron'
+			fontFamily === 'RasterSlice' ||
+			fontFamily === 'Amsterdam' ||
+			fontFamily === 'Orbitron'
 		) {
 			setLargeFont(true);
 		} else {
@@ -48,28 +64,40 @@ function UserTextAndBars(props) {
 				
 				setShowBars(true);
 	
-				ctx.dimension.setWidth(`${storeText.length * 2}CM`)
-
+				// ctx.dimension.setWidth(`${storeText.length * 2}CM`)
+				dispatch(setWidth(`${storeText.length * 2}CM`))
 				setDisplayText(storeText);
+				dispatch(setDebounceState(true));
 			}
 
-			if (ctx.textInput.uTxt.length > 0) {
+			// if (uTxt.length > 0) {
 	
-				ctx.debouncer.setDebounceState(true);
-				setDisplayText(userText);
-			}
+			// 	// ctx.debouncer.setDebounceState(true);
+			// 	setDisplayText(uTxt);
+			// }
 
-			if (ctx.textInput.uTxt.length === 0) {
+			// if (uTxt.length === 0) {
+			
+			// 	setDisplayText('Your Text');
+		
+			// 	// ctx.dimension.setWidth(``);
+			// 	dispatch(setWidth(''));
+			// 	setShowBars(false);
+			// }
+			if (!isTouched) {
 			
 				setDisplayText('Your Text');
 		
-				ctx.dimension.setWidth(``)
+				// ctx.dimension.setWidth(``);
+				dispatch(setWidth(''));
 				setShowBars(false);
 			}
 
 			if (storageStatus === false && txtState === true) {
 			
-				ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`)
+				// ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`);
+				setDisplayText(uTxt);
+				dispatch(setWidth(`${uTxt.length * 2} CM`));
 			}	
 		}, 300);
 
@@ -77,9 +105,10 @@ function UserTextAndBars(props) {
 			clearTimeout(timerHandler);
 			
 	
-			ctx.debouncer.setDebounceState(false);
+			// ctx.debouncer.setDebounceState(false);
+			dispatch(setDebounceState(false));
 		};
-	}, [txtState, ctx, storeText, userText, storageStatus]);
+	}, [fontFamily,dispatch,txtState,storageStatus,uTxt,storeText,isTouched]);
 	
 
 	
@@ -114,7 +143,7 @@ function UserTextAndBars(props) {
 						}}
 					>
 						{storageStatus && displayText}
-						{!storageStatus && userText}
+						{!storageStatus && uTxt}
 					</p>
 				</section>
 
@@ -132,7 +161,7 @@ function UserTextAndBars(props) {
 			</div>
 
 			<span className="measurementBar-width-length">
-				{showBars && ctx.dimension.width}
+				{showBars && width}
 			</span>
 		</>
 	);

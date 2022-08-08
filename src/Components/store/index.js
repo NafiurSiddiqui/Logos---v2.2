@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import colorReducer from './colorSlice';
+import debounceSlice from "./debounceSlice";
 import dimensionReducer from "./dimension";
 import fontSliceReducer from "./fontSlice";
 import txtSliceReducer from './textSlice';
-
 
 //configure store here
 
@@ -13,7 +13,8 @@ export const store  = configureStore({
         txt:txtSliceReducer,
         font:fontSliceReducer,
         color: colorReducer,
-        dimension:dimensionReducer
+        dimension:dimensionReducer,
+        debouncer: debounceSlice.reducer
     }
 });
 
