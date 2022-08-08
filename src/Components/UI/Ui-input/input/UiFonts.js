@@ -64,7 +64,7 @@ function UiFonts(props) {
 
 	const [activeButtonId, setActiveButtonId] = useState(null);
 
-	// const ctx = useContext(textCtx);
+
 
 	const fontHandler = (e) => {
 		//if--click is list
@@ -72,29 +72,19 @@ function UiFonts(props) {
 			//get the fontName
 			const targetClass = e.target.classList[1];
 			
-
-			// ctx.fontInput.setFontFamily(targetClass);
-			// setFontFamily(targetClass);
 			dispatch(setFontFamily(targetClass));
 			dispatch(setFontState(true));
-			
-			// ctx.fontInput.setFontState(true);
-			// setFontState(true);
-
 			setActiveButtonId(targetClass);
 		}
 		//if--img
 		if (e.target.localName === 'img') {
 			const targetId = e.target.id;
-
-			// ctx.fontInput.setFontFamily(targetId);
-			// ctx.fontInput.setFontState(true);
 			dispatch(setFontFamily(targetId));
 			dispatch(setFontState(true));
 			setActiveButtonId(targetId);
 		}
 	};
-	// console.log(fontFamily, fontState);
+
 
 	return (
 		<section
