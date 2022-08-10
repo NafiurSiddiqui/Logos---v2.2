@@ -19,9 +19,9 @@ function UserTextAndBars(props) {
 
 	const {uTxt,txtState, storageText:storeText,isTouched, storageStatus } = useSelector(state => state.txt);
 
-	console.log(isTouched);
 
-	const {height:letterHeight, width} = useSelector(state => state.dimension);
+
+	const {height, width} = useSelector(state => state.dimension);
 
 	const { fontFamily } = useSelector(state => state.font);
 
@@ -65,7 +65,7 @@ function UserTextAndBars(props) {
 				setShowBars(true);
 	
 				// ctx.dimension.setWidth(`${storeText.length * 2}CM`)
-				dispatch(setWidth(`${storeText.length * 2}CM`))
+				dispatch(setWidth(`${storeText.length}CM`))
 				setDisplayText(storeText);
 				dispatch(setDebounceState(true));
 			}
@@ -97,9 +97,11 @@ function UserTextAndBars(props) {
 			
 				// ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`);
 				setDisplayText(uTxt);
-				dispatch(setWidth(`${uTxt.length * 2} CM`));
+				dispatch(setWidth(`${uTxt.length} CM`));
 			}	
 		}, 300);
+
+		
 
 		return () => {
 			clearTimeout(timerHandler);
@@ -123,7 +125,7 @@ function UserTextAndBars(props) {
 	const deviceWidth = windowWidth <= 600 ? '55px': fontForLargeDevice;
 
 	
-	
+	// console.log(height);
 
 	
 	return (
@@ -151,10 +153,10 @@ function UserTextAndBars(props) {
 					<div className="measurementBar-height-wrapper">
 						<span
 							className="measurementBar-height"
-							style={{ height: `${letterHeight}px` }}
+							style={{ height: `${height}px` }}
 						></span>
 						<span className="measurementBar-height-length">
-							{`${Math.floor(letterHeight)}Cm`}
+							{`${Math.floor(height)}Cm`}
 						</span>
 					</div>
 				)}
