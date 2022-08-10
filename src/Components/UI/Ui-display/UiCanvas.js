@@ -1,8 +1,7 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCanvas } from '../../HelperFunc';
 import { setHeight } from '../../store/dimension';
-import textCtx from '../../store/txtCtx';
 
 function Canvas() {
 
@@ -12,26 +11,14 @@ function Canvas() {
 
 	const dispatch = useDispatch();
 
-	const ctx = useContext(textCtx);
-
-	// let storageText = ctx.textInput.storageText;
-	// const storageStatus = ctx.textInput.storageStatus;
-	// let delTxtState = ctx.textInput.delTxtState;
-	// const fontState = ctx.fontInput.fontState;
-	// const fontFamily = ctx.fontInput.setFontFamily;
 
 	const ctxRef = useRef();
 
 	useEffect(() => {
-		// let uTxt = ctx.textInput.uTxt;
-
+		
 		const canvaCtx = ctxRef.current.getContext('2d');
 		const metrics = canvaCtx.measureText(uTxt);
 
-		// ctx.dimension.setHeight(
-		// 	Math.floor(metrics.actualBoundingBoxAscent) +
-		// 		Math.floor(metrics.actualBoundingBoxDescent)
-		// );
 		dispatch(setHeight(Math.floor(metrics.actualBoundingBoxAscent) +
 		Math.floor(metrics.actualBoundingBoxDescent)));
 		

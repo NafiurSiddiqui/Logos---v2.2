@@ -97,12 +97,10 @@ function UiColors(props) {
 	const [hoverActive, sethoverActive] = useState(false);
 	const [targetColorCode, setTargetColorCode] = useState(null);
 
-	//MouseOver state?, get the associated color code and set it
-	// const ctx = useContext(textCtx);
-
 	const {colorActive} = useSelector(state => state.color);
 	const dispatch = useDispatch();
-	
+
+	const {neonState} = useSelector(state => state.neonSwitch)
 	//Mouseenter
 	const mouseOverHanlder = (e) => {
 		setTargetColorCode(e.target.dataset.colorcode);
@@ -117,17 +115,21 @@ function UiColors(props) {
 
 	//Activating button
 	const bulbClickHandler = (e) => {
-		setBulbClicked(false);
 
+		if(!neonState){
+			alert('Plz turn on the neonSwitch');
+			return;
+		}
+		
+		setBulbClicked(false);
 		setColorActive(null);
+		
 		if (e.target.localName === 'i') {
 			//To stop double click on <i> el
 			e.stopPropagation();
 			//since i do not have colorCode available on this elelment, I target the parent
 			const parentColorCode = e.target.parentElement.dataset.colorcode;
 
-			
-	
 			dispatch(setColorActive(parentColorCode));
 			setBulbClicked(true);
 		} else {
@@ -147,8 +149,7 @@ function UiColors(props) {
 			<h3 className="ui-input-form-heading">CHOOSE COLOUR</h3>
 			<ul className="ui-input-color-lists">
 				{colorBulbs.map((bulb) => {
-			
-					// const currentBulb = bulb.colorCode === ctx.colorInput.colorActive;
+
 					const currentBulb = bulb.colorCode === colorActive;
 				
 					const isHovered = bulb.colorCode === targetColorCode;

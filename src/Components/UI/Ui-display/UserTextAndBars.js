@@ -1,54 +1,32 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDebounceState } from '../../store/debounceSlice';
 import { setWidth } from '../../store/dimension';
-import textCtx from '../../store/txtCtx';
 
 const windowWidth = window.innerWidth;
 
-
-
 function UserTextAndBars(props) {
-	
 	const [showBars, setShowBars] = useState(false);
-	const [displayText, setDisplayText] = useState('Your Text' );
+	const [displayText, setDisplayText] = useState('Your Text');
 	//STYLING STATE
 	const [largeFont, setLargeFont] = useState();
+	const {
+		uTxt,
+		txtState,
+		storageText: storeText,
+		isTouched,
+		storageStatus,
+	} = useSelector((state) => state.txt);
 
-	const ctx = useContext(textCtx);
-
-	const {uTxt,txtState, storageText:storeText,isTouched, storageStatus } = useSelector(state => state.txt);
-
-
-
-	const {height, width} = useSelector(state => state.dimension);
-
-	const { fontFamily } = useSelector(state => state.font);
-
-	const {colorActive} = useSelector(state => state.color);
-	const neonState = props.neonSwitchState;
-
+	const { height, width } = useSelector((state) => state.dimension);
+	const { fontFamily } = useSelector((state) => state.font);
+	const { colorActive } = useSelector((state) => state.color);
+	const {neonState} = useSelector(state => state.neonSwitch)
 
 	const dispatch = useDispatch();
 
-	// let letterHeight = ctx.dimension.height;
-
-	// let txtState = ctx.textInput.txtState;
-	// let userText = ctx.textInput.uTxt;
-	// let storeText = ctx.textInput.storageText;
-	// const storageStatus = ctx.textInput.storageStatus;
-	//color states
-	// const colorActive = ctx.colorInput.colorActive;
-	
-	// console.log(uTxt);
-
-	
 	useEffect(() => {
 		if (
-		
-			// ctx.fontInput.fontFamily === 'RasterSlice' ||
-			// ctx.fontInput.fontFamily === 'Amsterdam' ||
-			// ctx.fontInput.fontFamily === 'Orbitron'
 			fontFamily === 'RasterSlice' ||
 			fontFamily === 'Amsterdam' ||
 			fontFamily === 'Orbitron'
@@ -57,61 +35,46 @@ function UserTextAndBars(props) {
 		} else {
 			setLargeFont(false);
 		}
-		
+
 		let timerHandler = setTimeout(() => {
-			
-			if (txtState === true || storeText !== null) {
-				
+			if (txtState === true || storeText !== (null || '')) {
 				setShowBars(true);
-	
-				// ctx.dimension.setWidth(`${storeText.length * 2}CM`)
-				dispatch(setWidth(`${storeText.length}CM`))
+
+				if (storeText === null) {
+					dispatch(setWidth(``));
+				} else {
+					dispatch(setWidth(`${storeText.length}CM`));
+				}
 				setDisplayText(storeText);
 				dispatch(setDebounceState(true));
 			}
 
-			// if (uTxt.length > 0) {
-	
-			// 	// ctx.debouncer.setDebounceState(true);
-			// 	setDisplayText(uTxt);
-			// }
-
-			// if (uTxt.length === 0) {
-			
-			// 	setDisplayText('Your Text');
-		
-			// 	// ctx.dimension.setWidth(``);
-			// 	dispatch(setWidth(''));
-			// 	setShowBars(false);
-			// }
 			if (!isTouched) {
-			
 				setDisplayText('Your Text');
-		
-				// ctx.dimension.setWidth(``);
 				dispatch(setWidth(''));
 				setShowBars(false);
 			}
 
 			if (storageStatus === false && txtState === true) {
-			
-				// ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`);
 				setDisplayText(uTxt);
 				dispatch(setWidth(`${uTxt.length} CM`));
-			}	
+				dispatch(setDebounceState(true));
+			}
 		}, 300);
-
-		
 
 		return () => {
 			clearTimeout(timerHandler);
-			
-	
-			// ctx.debouncer.setDebounceState(false);
 			dispatch(setDebounceState(false));
 		};
-	}, [fontFamily,dispatch,txtState,storageStatus,uTxt,storeText,isTouched]);
-	
+	}, [
+		fontFamily,
+		dispatch,
+		txtState,
+		storageStatus,
+		uTxt,
+		storeText,
+		isTouched,
+	]);
 
 	
 
@@ -121,13 +84,11 @@ function UserTextAndBars(props) {
 		${colorActive} 0px 0px 75px`;
 
 	//FONTS
-	const fontForLargeDevice = windowWidth > 2200? '7em': '5em';
-	const deviceWidth = windowWidth <= 600 ? '55px': fontForLargeDevice;
+	const fontForLargeDevice = windowWidth > 2200 ? '7em' : '5em';
+	const deviceWidth = windowWidth <= 600 ? '55px' : fontForLargeDevice;
 
 	
-	// console.log(height);
 
-	
 	return (
 		<>
 			<div className="ui-display-userText-wrapper">
@@ -139,13 +100,14 @@ function UserTextAndBars(props) {
 					<p
 						className="ui-display-userText-text neonOn"
 						style={{
-							fontFamily: ctx.fontInput.fontFamily,
+							fontFamily: fontFamily,
 							fontSize: largeFont ? '3em' : deviceWidth,
 							textShadow: !neonState ? 'none' : neonShadow,
 						}}
 					>
 						{storageStatus && displayText}
 						{!storageStatus && uTxt}
+						{!isTouched && displayText}
 					</p>
 				</section>
 
@@ -162,9 +124,7 @@ function UserTextAndBars(props) {
 				)}
 			</div>
 
-			<span className="measurementBar-width-length">
-				{showBars && width}
-			</span>
+			<span className="measurementBar-width-length">{showBars && width}</span>
 		</>
 	);
 }
