@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const dimensionSlice = createSlice({
 	name: 'dimension',
 	initialState: {
-		width: 0,
-		height: 0,
+		width: '',
+		height: '',
 	},
 	reducers: {
 		setWidth: (state, action) => {
-            state.width = action.payload * 2
+            state.width = action.payload 
         },
 		setHeight: (state, action) => {
             state.height = action.payload

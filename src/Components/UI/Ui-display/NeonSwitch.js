@@ -1,21 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setNeonState } from "../../store/neonSlice";
 
-function NeonSwitch(props) {
+function NeonSwitch() {
+
+	const {neonState} = useSelector(state => state.neonSwitch);
 
 
-	// console.log(props.neonSwitchState);
+	const dispatch = useDispatch();
 	
 	const switchHandler =()=>{
-		
-		props.setNeonSwitch(prevState =>{
-
-			return !prevState
-		})
+	
+		dispatch(setNeonState());
 	 };
 	
 	return (
 		<label className="switch">
-			<input type="checkbox" id="neonSwitch" onClick={switchHandler} defaultChecked={props.neonSwitchState} />
-			<span className="slider round" role='switch' aria-checked={props.neonSwitchState? 'true':'false'}>
+			<input type="checkbox" id="neonSwitch" onClick={switchHandler} defaultChecked={neonState} />
+			<span className="slider round" role='switch' aria-checked={neonState ? 'true':'false'}>
 				<span aria-hidden="true" >On</span>
 				<span aria-hidden="true" >Off</span>
 			</span>

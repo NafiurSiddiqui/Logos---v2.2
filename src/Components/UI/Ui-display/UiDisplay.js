@@ -1,24 +1,14 @@
-import { useState } from 'react';
 import NeonSwitch from './NeonSwitch';
 import Canvas from './UiCanvas';
 import UserTextAndBars from './UserTextAndBars';
 
-function UiDisplay(props) {
-	//Toggle switch for Neon
-	const [toggleNeon, setToggleNeon] = useState(true);
-
-	const neonSwitchHandler = (switchState) => {
-		setToggleNeon(switchState);
-	};
+function UiDisplay() {
 
 	return (
 		<article className="ui-display">
-			<NeonSwitch
-				setNeonSwitch={neonSwitchHandler}
-				neonSwitchState={toggleNeon}
-			/>
+			<NeonSwitch/>
 			<div className="ui-display-userText-container">
-				<UserTextAndBars neonSwitchState={toggleNeon} />
+				<UserTextAndBars />
 				<Canvas />
 			</div>
 		</article>

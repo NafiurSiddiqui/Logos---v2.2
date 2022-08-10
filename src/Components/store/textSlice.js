@@ -6,7 +6,8 @@ const initialState = {
 	storageStatus: null,
 	delTxtState: false,
 	txtState: false,
-	isTouched:false
+	isTouched:false,
+
 };
 
 const txtSlice = createSlice({
