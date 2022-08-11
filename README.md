@@ -1,4 +1,4 @@
-# CUSTOM NEON TEXT APP (version 2.1)
+# CUSTOM NEON TEXT APP (version 2.2)
 
 Turn your text into a custom neon light and lit up your place with neon induced aura! This App can be used by people who runs business of building custom neon signboard, nameplate and such. This app is also highly modifiable according to the client's need.
 v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of  v2.1 and v2.2.
@@ -51,6 +51,8 @@ Fixed.
 
 - webpack
 
+- NPM
+
 - Debouncing algorithm -- to save resources and time therefore good optimization and speed. ( i have a custom debounce hook here which is not used here but left for reference for next updates)
 
 - One of the most trickiest and challenging part was to get the height of each characters, which i did with the help of masking a canvas.
@@ -67,4 +69,11 @@ Fixed.
 
 - Responsiveness ensured which adapts to all of the devices out there.
 
+
+#Instruction
+
+- clone the rep
+- delete package.json
+- run -> npm install 
+- once done, simply run -> npm start
 
