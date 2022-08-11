@@ -76,8 +76,6 @@ function UserTextAndBars(props) {
 		isTouched,
 	]);
 
-	
-
 	const neonShadow = ` rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
 		${colorActive} 0px 0px 20px, ${colorActive} 0px 0px 30px,
 		${colorActive} 0px 0px 40px, ${colorActive} 0px 0px 55px,

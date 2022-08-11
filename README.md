@@ -1,11 +1,11 @@
 # CUSTOM NEON TEXT APP (version 2.1)
 
-Turn your text into a custom neon light and lit up your place with neon induced aura! This App can be used by people who runs a business of building custom neon signboard, nameplate and such. This app is also highly modifiable according to the client's need.
-v2 codwise is not opitmum since i just made it with props drilling which i am going to take care of in v2.1 and v2.2.
-
+Turn your text into a custom neon light and lit up your place with neon induced aura! This App can be used by people who runs business of building custom neon signboard, nameplate and such. This app is also highly modifiable according to the client's need.
+v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of  v2.1 and v2.2.
+V2.2 release is going to address the issue of poor UX on smaller device.
 
 Vist: [Client website](...)
-Vist: [v2 website](...)
+Vist: [v2.2 website](...)
 
 ## Note for developer and clients
 
@@ -18,12 +18,13 @@ Check out the links below for the licensing of the fonts used here that requires
 
 ### features -
 
-- Type your text < 20 character
+- Type your text <= 20 character
 - Choose from the range of 8 google fonts
 - set the color between 12 unique colors
 - Pricing is based on the characters, so basically the width.
 - a switch to turn the neon and off
 - shows off the dimension of the text
+- of course all of these are modifiable according to your business requirements.
 
 ## :bug: BUGS from v1
 
@@ -40,11 +41,15 @@ Fixed.
 ### Some of the technical aspect i have implemented in this version of the webApp (almost)
 
 ---
-- React (no third party libs)
+- React 
 
 - React Router
 
+- Redux
+
 - SASS.
+
+- webpack
 
 - Debouncing algorithm -- to save resources and time therefore good optimization and speed. ( i have a custom debounce hook here which is not used here but left for reference for next updates)
 
