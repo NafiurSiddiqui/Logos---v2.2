@@ -59,17 +59,34 @@
 
 		&-container {
 			display: flex;
-			// justify-content: space-around;
 			justify-content: center;
 			align-items: center;
 		}
 
-		&-nav{
+		&-nav {
 			width: 30%;
 
-			&-lists{
+			&-lists {
 				flex-direction: column;
 			}
+
+			&-list {
+				line-height: 3.4rem;
+				border-right: 0;
+				&:nth-child(3) {
+					border-top-right-radius: 0 ;
+					border-right-color: none;
+				}
+			}
+		}
+
+		&-form-container{
+			width: 68%;
+			border-bottom-left-radius: 0;
+		}
+
+		.ui-price-card__container {
+			display: none;
 		}
 	}
 

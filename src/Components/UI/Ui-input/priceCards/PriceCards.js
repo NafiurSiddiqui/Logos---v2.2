@@ -11,14 +11,16 @@ const init = {
 
 
 
-function PriceCards() {
+function PriceCards(props) {
 
 	const [pricing, setPricing] = useState(init);
 	const [letterWidth, setletterWidth] = useState(init);
 	const [height, setHeight] = useState(init);	
+
 	const {uTxt, storageStatus, storageText: storeTxt} = useSelector(state => state.txt);
 	const {height:letterHeight} = useSelector(state => state.dimension);
 	const {debounceStat} = useSelector(state => state.debouncer);
+
 	let userText;
 	let storageText = '---';
 	let width = null;
@@ -26,23 +28,17 @@ function PriceCards() {
 	
 	uTxt === null || undefined ?  userText = '' : userText = uTxt; 
 
-
 	if (uTxt !== null || undefined){
-		width = uTxt.length;
-		
+		width = uTxt.length;		
 	}
-
 
 	if (storageStatus !== false && storeTxt){
 		storageText = storeTxt;
 		width = storeTxt.length;
 	}
 	
-
-
 	const storageTextStatus = storeTxt === '---'; 
 
-	
 	//Debounce true? calculate this.
 	useEffect(() => {
 		
@@ -83,7 +79,7 @@ function PriceCards() {
 	
 
 	return (
-		<div className="ui-price-card__container">
+		<div className={`ui-price-card__container ${props.priceActive && !props.chevClick ? 'priceCard-open' : ''}`}>
 			<ul className="ui-price-cards">
 				<PriceCard size="small" price={pricing.small} length={letterWidth.small} height={height.small} />
 				<PriceCard size="medium" price={pricing.mid} length={letterWidth.mid} height={height.mid} />

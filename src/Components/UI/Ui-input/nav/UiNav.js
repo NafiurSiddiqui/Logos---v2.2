@@ -1,22 +1,29 @@
-import { useDispatch } from "react-redux";
-import { getDeviceWidth } from "../../../store/smallDevice-slice";
+import { useDispatch } from 'react-redux';
+import { getDeviceWidth } from '../../../store/smallDevice-slice';
 
 const windowWidth = window.innerWidth;
 
-
-
 function UiNav(props) {
+	
+
+	
+
 
 	const dispatch = useDispatch();
-	
-	windowWidth <= 860 && dispatch(getDeviceWidth(true));
-	
+
+	if (windowWidth <= 860) {
+		dispatch(getDeviceWidth(true));
+	} else {
+		dispatch(getDeviceWidth(false));
+	}
+
 	const navTxtActiveHandler = () => {
 		//Activate TEXT
 		props.setNavTxtState(true);
 		//Deactivate the rests
 		props.setNavFontState(false);
 		props.setNavColorState(false);
+		props.setPriceActive(false);
 	};
 
 	const navFontActiveHandler = () => {
@@ -26,6 +33,7 @@ function UiNav(props) {
 		//Deactivate the rests
 		props.setNavTxtState(false);
 		props.setNavColorState(false);
+		props.setPriceActive(false);
 	};
 
 	const navColorActiveHandler = () => {
@@ -34,27 +42,26 @@ function UiNav(props) {
 		//Deactivate the rests
 		props.setNavTxtState(false);
 		props.setNavFontState(false);
+		props.setPriceActive(false);
 	};
 
+	const priceActiveHandler = () => {
+		props.setPriceActive(true);
+		props.setNavTxtState(false);
+		props.setNavFontState(false);
+		props.setNavColorState(false);
+	};
 
-	const priceActiveHandler = ()=>{
-		
-	 };
-
-	if (props.navState.colorState){
-		 document.body.style.overflowY = 'scroll';
-		document.body.style.height = '140vh';
-
-	}else if(!props.navState.colorState && windowWidth < 860){
+	if (props.navState.colorState) {
 		document.body.style.overflowY = 'scroll';
 		document.body.style.height = '140vh';
+	} else if (!props.navState.colorState && windowWidth < 860) {
+		document.body.style.overflowY = 'scroll';
+		document.body.style.height = '140vh';
+	} else {
+		document.body.style.overflowY = 'hidden';
+		document.body.style.height = '100vh';
 	}
-	else	
-	{
-			document.body.style.overflowY = 'hidden';
-			document.body.style.height = '100vh';
-	}
-	
 
 	return (
 		<div className="ui-input-nav">
@@ -85,11 +92,11 @@ function UiNav(props) {
 				>
 					Color
 				</li>
-					{/* smallScreeActive? */}
+
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.colorState ? 'nav-active' : ''
-					}`}
+						props.navState.priceActive ? 'nav-active' : ''
+					} price`}
 					onClick={priceActiveHandler}
 				>
 					Price

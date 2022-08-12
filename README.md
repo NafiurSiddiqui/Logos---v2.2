@@ -77,3 +77,6 @@ Fixed.
 - run -> npm install 
 - once done, simply run -> npm start
 
+## file naming convention
+
+- UI = User Interface (e.g. navbar === UI)
