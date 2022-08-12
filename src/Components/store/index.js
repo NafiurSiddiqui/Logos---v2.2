@@ -4,6 +4,7 @@ import debounceSlice from "./debounceSlice";
 import dimensionReducer from "./dimension";
 import fontSliceReducer from "./fontSlice";
 import neonSlice from "./neonSlice";
+import smallDeviceSlice from "./smallDevice-slice";
 
 import txtSliceReducer from './textSlice';
 //configure store here
@@ -16,7 +17,8 @@ export const store  = configureStore({
         color: colorReducer,
         dimension:dimensionReducer,
         debouncer: debounceSlice.reducer,
-        neonSwitch: neonSlice.reducer
+        neonSwitch: neonSlice.reducer,
+        smallDevice:smallDeviceSlice.reducer
     }
 });
 

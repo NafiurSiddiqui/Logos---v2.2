@@ -6,8 +6,14 @@ import UserInput from './Ui-input/input/UserInput';
 
 
 function Ui() {
+	
+	
+	
 	document.body.classList.add('ui-body');
+	// console.log(window.innerWidth);
 
+	
+	
 	return (
 		<>
 			<Header className="ui-logo" />

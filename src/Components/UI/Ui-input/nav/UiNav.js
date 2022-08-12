@@ -1,8 +1,15 @@
+import { useDispatch } from "react-redux";
+import { getDeviceWidth } from "../../../store/smallDevice-slice";
+
 const windowWidth = window.innerWidth;
 
 
 
 function UiNav(props) {
+
+	const dispatch = useDispatch();
+	
+	windowWidth <= 860 && dispatch(getDeviceWidth(true));
 	
 	const navTxtActiveHandler = () => {
 		//Activate TEXT
@@ -28,6 +35,11 @@ function UiNav(props) {
 		props.setNavTxtState(false);
 		props.setNavFontState(false);
 	};
+
+
+	const priceActiveHandler = ()=>{
+		
+	 };
 
 	if (props.navState.colorState){
 		 document.body.style.overflowY = 'scroll';
@@ -72,6 +84,15 @@ function UiNav(props) {
 					onClick={navColorActiveHandler}
 				>
 					Color
+				</li>
+					{/* smallScreeActive? */}
+				<li
+					className={`ui-input-nav-list ${
+						props.navState.colorState ? 'nav-active' : ''
+					}`}
+					onClick={priceActiveHandler}
+				>
+					Price
 				</li>
 			</ul>
 		</div>

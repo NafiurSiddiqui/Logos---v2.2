@@ -20,7 +20,7 @@
 		padding: 0.5em;
 	}
 
-	main.container{
+	main.container {
 		height: 90vh;
 	}
 }
@@ -44,6 +44,59 @@
 	.ui-display-userText-text {
 		position: relative;
 		right: -3%;
+	}
+}
+
+@media screen and (max-width: 860px) {
+	//MAJOR ui-input change here--
+
+	.ui-input {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+
+		&-container {
+			display: flex;
+			// justify-content: space-around;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&-nav{
+			width: 30%;
+
+			&-lists{
+				flex-direction: column;
+			}
+		}
+	}
+
+	//---------------
+
+	body.ui-body {
+		min-height: 180vh;
+		overflow-y: scroll;
+	}
+	section.ui-container {
+		grid-template-columns: 100%;
+		width: 80%;
+	}
+
+	input:checked + .slider:before {
+		-webkit-transform: translateX(37px);
+		-ms-transform: translateX(37px);
+		transform: translateX(37px);
+	}
+
+	.measurementBar-height-wrapper {
+		padding-bottom: 0.8em;
+	}
+
+	.ui-display-userText-container {
+		position: relative;
+		top: -2em;
 	}
 }
 
@@ -77,40 +130,6 @@
 				visibility: hidden;
 			}
 		}
-	}
-}
-
-
-
-
-@media screen and (max-width: 860px) {
-	body.ui-body {
-		min-height: 180vh;
-		overflow-y: scroll;
-	}
-	section.ui-container {
-		grid-template-columns: 100%;
-		width: 80%;
-	}
-
-	article.ui-input {
-		width: 25em;
-		margin: 0 auto;
-	}
-
-	input:checked + .slider:before {
-		-webkit-transform: translateX(37px);
-		-ms-transform: translateX(37px);
-		transform: translateX(37px);
-	}
-
-	.measurementBar-height-wrapper {
-		padding-bottom: 0.8em;
-	}
-
-	.ui-display-userText-container {
-		position: relative;
-		top: -2em;
 	}
 }
 
@@ -196,22 +215,21 @@
 		}
 	}
 
-	header.ui-logo{
+	header.ui-logo {
 		margin-bottom: 1.6em;
 	}
 }
 
-@media screen and (max-width:400px) {
-
-	.ui-input-color-lists{
+@media screen and (max-width: 400px) {
+	.ui-input-color-lists {
 		grid-gap: 0;
 	}
-	
-	.ui-input-fontFamily-lists{
+
+	.ui-input-fontFamily-lists {
 		grid-gap: 16px;
 	}
 
-	.ui-input-fontFamily-list{
+	.ui-input-fontFamily-list {
 		padding: 2.5vw;
 		width: 32vw !important;
 	}
