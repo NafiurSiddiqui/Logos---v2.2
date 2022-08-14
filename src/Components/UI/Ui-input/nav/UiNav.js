@@ -95,8 +95,8 @@ function UiNav(props) {
 
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.priceActive ? 'nav-active' : ''
-					} price`}
+						props.navState.priceClickState? 'nav-active' : ''
+					}`}
 					onClick={priceActiveHandler}
 				>
 					Price
