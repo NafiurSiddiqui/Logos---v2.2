@@ -4,9 +4,7 @@ import UserTextAndBars from './UserTextAndBars';
 
 function UiDisplay() {
 
-	//if price active and display small
-	// const windowWidth = window.innerWidth;
-	// console.log(windowWidth);
+
 	
 	return (
 		<article className="ui-display">

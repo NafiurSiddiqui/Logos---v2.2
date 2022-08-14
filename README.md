@@ -77,6 +77,8 @@ Fixed.
 - run -> npm install 
 - once done, simply run -> npm start
 
+- you need to refresh if you are resizing the browser for live responsiveness in order to see the changes
+
 ## file naming convention
 
 - UI = User Interface (e.g. navbar === UI)

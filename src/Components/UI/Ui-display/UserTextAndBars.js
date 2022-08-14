@@ -5,7 +5,7 @@ import { setWidth } from '../../store/dimension';
 
 const windowWidth = window.innerWidth;
 
-function UserTextAndBars(props) {
+function UserTextAndBars() {
 	const [showBars, setShowBars] = useState(false);
 	const [displayText, setDisplayText] = useState('Your Text');
 	//STYLING STATE

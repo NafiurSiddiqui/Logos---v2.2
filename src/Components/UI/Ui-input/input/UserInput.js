@@ -64,7 +64,6 @@ function UserInput() {
 
 			{priceActive && <div className={`chevron-up ${chevClick ? 'chevHide':''}`} onClick={chevClickHandler} >
 				&gt;
-
 				<span className='tooltip' >Cards Collapse</span>
 			</div>}
 		</article>

@@ -28,6 +28,7 @@ article.ui-display {
 
 	&-wrapper {
 		@include flexSpaceBetween;
+		text-align: center;
 	}
 
 	&-text {
@@ -70,6 +71,7 @@ article.ui-display {
 		display: inline-block;
 		position: absolute;
 		bottom: 0;
+		left: 0;
 	}
 }
 

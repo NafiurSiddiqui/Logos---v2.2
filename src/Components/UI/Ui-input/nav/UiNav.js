@@ -4,8 +4,6 @@ import { getDeviceWidth } from '../../../store/smallDevice-slice';
 const windowWidth = window.innerWidth;
 
 function UiNav(props) {
-	
-
 	const dispatch = useDispatch();
 
 	if (windowWidth <= 860) {
@@ -52,9 +50,6 @@ function UiNav(props) {
 	if (props.navState.colorState) {
 		document.body.style.overflowY = 'scroll';
 		document.body.style.height = '140vh';
-	} else if (!props.navState.colorState && windowWidth < 860) {
-		document.body.style.overflowY = 'scroll';
-		document.body.style.height = '140vh';
 	} else {
 		document.body.style.overflowY = 'hidden';
 		document.body.style.height = '100vh';
@@ -89,15 +84,16 @@ function UiNav(props) {
 				>
 					Color
 				</li>
-
-				<li
-					className={`ui-input-nav-list ${
-						props.navState.priceClickState? 'nav-active' : ''
-					}`}
-					onClick={priceActiveHandler}
-				>
-					Price
-				</li>
+				{windowWidth <= 860 && (
+					<li
+						className={`ui-input-nav-list ${
+							props.navState.priceClickState ? 'nav-active' : ''
+						}`}
+						onClick={priceActiveHandler}
+					>
+						Price
+					</li>
+				)}
 			</ul>
 		</div>
 	);
