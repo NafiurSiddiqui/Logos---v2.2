@@ -43,7 +43,7 @@ function UserInput() {
 		priceClickState:priceActive
 	};
 
-	console.log(chevClick);
+	
 	return (
 		<article className="ui-input">
 			<div className="ui-input-container">

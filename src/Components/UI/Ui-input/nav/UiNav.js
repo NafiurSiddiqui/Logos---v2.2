@@ -6,9 +6,6 @@ const windowWidth = window.innerWidth;
 function UiNav(props) {
 	
 
-	
-
-
 	const dispatch = useDispatch();
 
 	if (windowWidth <= 860) {

@@ -38,7 +38,7 @@
 
 @media screen and (max-width: 980px) {
 	li.ui-input-fontFamily-list {
-		width: 8rem;
+		width: 30vw;
 	}
 
 	.ui-display-userText-text {
@@ -56,6 +56,7 @@
 		top: 0;
 		left: 0;
 		z-index: 2;
+		border: 2px solid #38332a;
 
 		&-container {
 			display: flex;
@@ -71,16 +72,16 @@
 			}
 
 			&-list {
-				line-height: 3.4rem;
+				line-height: 3.5rem;
 				border-right: 0;
 				&:nth-child(3) {
-					border-top-right-radius: 0 ;
+					border-top-right-radius: 0;
 					border-right-color: none;
 				}
 			}
 		}
 
-		&-form-container{
+		&-form-container {
 			width: 68%;
 			border-bottom-left-radius: 0;
 		}
@@ -88,14 +89,15 @@
 		.ui-price-card__container {
 			display: none;
 		}
+
+		&-color-lists {
+			height: 26vh;
+			overflow-y: scroll;
+		}
 	}
 
 	//---------------
 
-	body.ui-body {
-		min-height: 180vh;
-		overflow-y: scroll;
-	}
 	section.ui-container {
 		grid-template-columns: 100%;
 		width: 80%;
@@ -165,21 +167,11 @@
 }
 
 @media screen and (max-width: 500px) {
-	body.ui-body {
-		min-height: 200vh;
-	}
-
 	p.ui-display-userText-text {
 		font-size: 3rem;
 	}
 	.measurementBar-container-bottom {
 		left: 0;
-	}
-
-	article.ui-input {
-		width: 100%;
-		margin: 0 auto;
-		border: 2px solid #38332a;
 	}
 
 	.switch {
