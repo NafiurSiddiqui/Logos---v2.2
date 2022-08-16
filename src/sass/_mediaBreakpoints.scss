@@ -66,30 +66,29 @@
 
 		&-nav {
 			width: 30%;
+			// width: 100%;
 
 			&-lists {
 				flex-direction: column;
+				// flex-direction: row;
 			}
 
 			&-list {
-	
 				padding: 0.45rem 0;
-				// padding: 7.18px 0;
 				border-right: 0;
 				&:nth-child(3) {
 					border-top-right-radius: 0;
 					border-right-color: none;
 				}
 
-				&:last-child{
-					border-bottom-left-radius: 0.6em;
-					
+				&:last-child {
+					border-bottom-left-radius: 0.7em;
 				}
-				
 			}
 		}
 
 		&-form-container {
+			
 			width: 68%;
 			border-bottom-left-radius: 0;
 			border-top-right-radius: 1.2em;

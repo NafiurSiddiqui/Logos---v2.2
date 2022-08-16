@@ -10,6 +10,7 @@ function UserTextAndBars() {
 	const [displayText, setDisplayText] = useState('Your Text');
 	//STYLING STATE
 	const [largeFont, setLargeFont] = useState();
+
 	const {
 		uTxt,
 		txtState,
@@ -26,6 +27,7 @@ function UserTextAndBars() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		// console.log(`Font Fami: ${fontFamily}, height: ${height}`);
 		if (
 			fontFamily === 'RasterSlice' ||
 			fontFamily === 'Amsterdam' ||

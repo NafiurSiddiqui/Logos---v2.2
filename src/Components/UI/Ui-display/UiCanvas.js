@@ -9,19 +9,26 @@ function Canvas() {
 
 	const {fontState, fontFamily} = useSelector(state => state.font);
 
+	const { height} = useSelector((state) => state.dimension);
+
 	const dispatch = useDispatch();
 
 
 	const ctxRef = useRef();
 
+	
+	
 	useEffect(() => {
 		
+	
 		const canvaCtx = ctxRef.current.getContext('2d');
+	
 		const metrics = canvaCtx.measureText(uTxt);
+		
 
 		dispatch(setHeight(Math.floor(metrics.actualBoundingBoxAscent) +
 		Math.floor(metrics.actualBoundingBoxDescent)));
-		
+	
 
 		const canvasWidth = ctxRef.current.width;
 		const canvasHeight = ctxRef.current.height;
@@ -30,10 +37,13 @@ function Canvas() {
 		if (delTxtState === true) {
 			clearCanvas(canvaCtx, canvasWidth, canvasHeight);
 		}
-
+		
+		
 		fontState === true
 			? (canvaCtx.font = `4rem ${fontFamily}`)
 			: (canvaCtx.font = '4rem Tangerine');
+
+	
 
 		canvaCtx.fillStyle = 'White';
 
@@ -45,7 +55,7 @@ function Canvas() {
 			clearCanvas(canvaCtx, canvasWidth, canvasHeight);
 			canvaCtx.fillText(storageText, 0, 50);
 		}
-	}, [uTxt, delTxtState, storageText, storageStatus, fontFamily, fontState,dispatch]);
+	}, [uTxt, delTxtState, storageText, storageStatus, fontFamily, fontState,dispatch,height]);
 
 	return <canvas id="displayText" ref={ctxRef}></canvas>;
 }

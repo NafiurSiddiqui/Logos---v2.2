@@ -4,6 +4,8 @@ import { getDeviceWidth } from '../../../store/smallDevice-slice';
 const windowWidth = window.innerWidth;
 
 function UiNav(props) {
+
+
 	const dispatch = useDispatch();
 
 	if (windowWidth <= 860) {
@@ -11,6 +13,9 @@ function UiNav(props) {
 	} else {
 		dispatch(getDeviceWidth(false));
 	}
+
+	//if minimize is not clicked, default nav
+	// console.log(props.chevClicked);
 
 	const navTxtActiveHandler = () => {
 		//Activate TEXT
@@ -60,7 +65,7 @@ function UiNav(props) {
 			<ul className="ui-input-nav-lists">
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.txtState ? 'nav-active' : ''
+						props.navState.txtState && !props.chevClicked ? 'nav-active' : ''
 					}`}
 					onClick={navTxtActiveHandler}
 				>
@@ -69,7 +74,7 @@ function UiNav(props) {
 
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.fontState ? 'nav-active' : ''
+						props.navState.fontState && !props.chevClicked  ? 'nav-active' : ''
 					}`}
 					onClick={navFontActiveHandler}
 				>
@@ -78,7 +83,7 @@ function UiNav(props) {
 
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.colorState ? 'nav-active' : ''
+						props.navState.colorState && !props.chevClicked  ? 'nav-active' : ''
 					}`}
 					onClick={navColorActiveHandler}
 				>
@@ -87,7 +92,7 @@ function UiNav(props) {
 				{windowWidth <= 860 && (
 					<li
 						className={`ui-input-nav-list ${
-							props.navState.priceClickState ? 'nav-active' : ''
+							props.navState.priceClickState && !props.chevClicked  ? 'nav-active' : ''
 						}`}
 						onClick={priceActiveHandler}
 					>
