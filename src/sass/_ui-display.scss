@@ -28,6 +28,7 @@ article.ui-display {
 
 	&-wrapper {
 		@include flexSpaceBetween;
+		text-align: center;
 	}
 
 	&-text {
@@ -45,32 +46,6 @@ article.ui-display {
 			rgba(0, 0, 0, 0.4) 1px 4px 6px, rgba(0, 0, 0, 0.38) 0px 5px 10px,
 			rgba(0, 0, 0, 0.25) 3px 7px 12px;
 	}
-	// &-and-bar {
-	// 	border-bottom: 2px solid white;
-	// 	width: 100%;
-	// 	position: relative;
-	// 	&::after {
-	// 		content: '';
-	// 		width: 2px;
-	// 		height: 15px;
-	// 		background-color: white;
-	// 		display: inline-block;
-	// 		position: absolute;
-	// 		bottom: 0;
-	// 		right: 0;
-	// 	}
-	// 	&::before {
-	// 		content: '';
-	// 		width: 2px;
-	// 		height: 15px;
-	// 		background-color: white;
-	// 		display: inline-block;
-
-	// 		position: absolute;
-
-	// 		bottom: 0;
-	// 	}
-	// }
 }
 
 .widthActive {
@@ -93,10 +68,9 @@ article.ui-display {
 		height: 15px;
 		background-color: white;
 		display: inline-block;
-
 		position: absolute;
-
 		bottom: 0;
+		left: 0;
 	}
 }
 
@@ -224,4 +198,11 @@ input:checked ~ span span:first-of-type {
 
 .slider.round:before {
 	border-radius: 50%;
+}
+
+//LOGIC
+.displayPulledDown {
+	position: absolute;
+	width: 80%;
+	bottom: 0;
 }

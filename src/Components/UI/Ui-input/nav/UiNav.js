@@ -1,15 +1,29 @@
+import { useDispatch } from 'react-redux';
+import { getDeviceWidth } from '../../../store/smallDevice-slice';
+
 const windowWidth = window.innerWidth;
 
-
-
 function UiNav(props) {
-	
+
+
+	const dispatch = useDispatch();
+
+	if (windowWidth <= 860) {
+		dispatch(getDeviceWidth(true));
+	} else {
+		dispatch(getDeviceWidth(false));
+	}
+
+	//if minimize is not clicked, default nav
+	// console.log(props.chevClicked);
+
 	const navTxtActiveHandler = () => {
 		//Activate TEXT
 		props.setNavTxtState(true);
 		//Deactivate the rests
 		props.setNavFontState(false);
 		props.setNavColorState(false);
+		props.setPriceActive(false);
 	};
 
 	const navFontActiveHandler = () => {
@@ -19,6 +33,7 @@ function UiNav(props) {
 		//Deactivate the rests
 		props.setNavTxtState(false);
 		props.setNavColorState(false);
+		props.setPriceActive(false);
 	};
 
 	const navColorActiveHandler = () => {
@@ -27,29 +42,30 @@ function UiNav(props) {
 		//Deactivate the rests
 		props.setNavTxtState(false);
 		props.setNavFontState(false);
+		props.setPriceActive(false);
 	};
 
-	if (props.navState.colorState){
-		 document.body.style.overflowY = 'scroll';
-		document.body.style.height = '140vh';
+	const priceActiveHandler = () => {
+		props.setPriceActive(true);
+		props.setNavTxtState(false);
+		props.setNavFontState(false);
+		props.setNavColorState(false);
+	};
 
-	}else if(!props.navState.colorState && windowWidth < 860){
+	if (props.navState.colorState) {
 		document.body.style.overflowY = 'scroll';
 		document.body.style.height = '140vh';
+	} else {
+		document.body.style.overflowY = 'hidden';
+		document.body.style.height = '100vh';
 	}
-	else	
-	{
-			document.body.style.overflowY = 'hidden';
-			document.body.style.height = '100vh';
-	}
-	
 
 	return (
 		<div className="ui-input-nav">
 			<ul className="ui-input-nav-lists">
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.txtState ? 'nav-active' : ''
+						props.navState.txtState && !props.chevClicked ? 'nav-active' : ''
 					}`}
 					onClick={navTxtActiveHandler}
 				>
@@ -58,7 +74,7 @@ function UiNav(props) {
 
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.fontState ? 'nav-active' : ''
+						props.navState.fontState && !props.chevClicked  ? 'nav-active' : ''
 					}`}
 					onClick={navFontActiveHandler}
 				>
@@ -67,12 +83,22 @@ function UiNav(props) {
 
 				<li
 					className={`ui-input-nav-list ${
-						props.navState.colorState ? 'nav-active' : ''
+						props.navState.colorState && !props.chevClicked  ? 'nav-active' : ''
 					}`}
 					onClick={navColorActiveHandler}
 				>
 					Color
 				</li>
+				{windowWidth <= 860 && (
+					<li
+						className={`ui-input-nav-list ${
+							props.navState.priceClickState && !props.chevClicked  ? 'nav-active' : ''
+						}`}
+						onClick={priceActiveHandler}
+					>
+						Price
+					</li>
+				)}
 			</ul>
 		</div>
 	);

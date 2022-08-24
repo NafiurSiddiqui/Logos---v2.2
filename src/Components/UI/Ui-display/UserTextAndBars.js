@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDebounceState } from '../../store/debounceSlice';
 import { setWidth } from '../../store/dimension';
+import { setFontSize } from '../../store/fontSlice';
 
 const windowWidth = window.innerWidth;
 
-function UserTextAndBars(props) {
+function UserTextAndBars() {
 	const [showBars, setShowBars] = useState(false);
 	const [displayText, setDisplayText] = useState('Your Text');
 	//STYLING STATE
 	const [largeFont, setLargeFont] = useState();
+
 	const {
 		uTxt,
 		txtState,
@@ -19,13 +21,19 @@ function UserTextAndBars(props) {
 	} = useSelector((state) => state.txt);
 
 	const { height, width } = useSelector((state) => state.dimension);
-	const { fontFamily } = useSelector((state) => state.font);
+
+
+	const { fontFamily, fontState } = useSelector((state) => state.font);
 	const { colorActive } = useSelector((state) => state.color);
 	const {neonState} = useSelector(state => state.neonSwitch)
 
 	const dispatch = useDispatch();
 
+	console.log('UserTextAndBars');
+	console.log(height);
+
 	useEffect(() => {
+		console.log(`Font Fami: ${fontFamily}, height: ${height}, fontState: ${fontState}`);
 		if (
 			fontFamily === 'RasterSlice' ||
 			fontFamily === 'Amsterdam' ||
@@ -74,6 +82,8 @@ function UserTextAndBars(props) {
 		uTxt,
 		storeText,
 		isTouched,
+		fontState,
+		height
 	]);
 
 	const neonShadow = ` rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
@@ -82,8 +92,40 @@ function UserTextAndBars(props) {
 		${colorActive} 0px 0px 75px`;
 
 	//FONTS
-	const fontForLargeDevice = windowWidth > 2200 ? '7em' : '5em';
-	const deviceWidth = windowWidth <= 600 ? '55px' : fontForLargeDevice;
+	// let fontForLargeDevice = windowWidth > 2200 ? '7em' : '5em';
+
+	// const deviceWidth = windowWidth <= 600 ? '55px' : fontForLargeDevice;
+	
+	let fontForLargeDevice = '5em';
+
+	if (windowWidth > 2200){
+		fontForLargeDevice = '7em';
+
+		setFontSize('7em')
+		
+	}else{
+		setFontSize('5em');
+	}
+
+	
+	// const deviceWidth = windowWidth <= 600 ? '55px' : fontForLargeDevice;
+	
+	let deviceWidth;
+	
+	
+	if (windowWidth <= 600){
+		deviceWidth = '55px';
+		setFontSize('55px')
+	}else{
+		deviceWidth = fontForLargeDevice;
+		setFontSize('5em');
+		
+	}
+
+	
+	
+	console.log(fontForLargeDevice, deviceWidth);
+
 
 	
 

@@ -4,6 +4,8 @@ import UserTextAndBars from './UserTextAndBars';
 
 function UiDisplay() {
 
+
+	
 	return (
 		<article className="ui-display">
 			<NeonSwitch/>

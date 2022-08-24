@@ -17,11 +17,10 @@ ul.ui-input-nav-lists {
 		rgba(255, 255, 255, 0.45) 0%,
 		rgba(255, 255, 255, 0.3735) 100%
 	);
-
+	transition: all 3s linear;
 	&-container {
 		background-color: $uiPrimary;
 		padding: 0.4em 0.3em;
-
 		border-radius: 1.2em;
 	}
 	&-nav {
@@ -33,13 +32,24 @@ ul.ui-input-nav-lists {
 			cursor: pointer;
 			color: #6a7072;
 			background-color: $uiPrimary;
-
+			&:hover {
+				background-color: #000000;
+				color: #e0e0e0;
+			}
 			&:nth-child(1) {
 				border-top-left-radius: 1em;
 			}
 			&:nth-child(3) {
 				border-top-right-radius: 1em;
 				border-right-color: rgb(11 11 11);
+			}
+
+			&.price {
+				display: none;
+
+				@media screen and (max-width: 860px) {
+					display: inline-block;
+				}
 			}
 		}
 	}
@@ -49,7 +59,6 @@ ul.ui-input-nav-lists {
 			padding: 1em 0;
 			text-align: center;
 			background-color: $uiSecondary;
-		
 			border-bottom-left-radius: 1.2em;
 			border-bottom-right-radius: 1.2em;
 		}
@@ -101,7 +110,6 @@ ul.ui-input-nav-lists {
 	}
 }
 
-
 .ui-input-color-lists,
 .ui-input-fontFamily-lists {
 	width: 90%;
@@ -125,6 +133,97 @@ ul.ui-input-nav-lists {
 	display: none;
 }
 
+//LOGICAL class
 .ui-active {
 	display: flex !important;
+}
+
+.form-hide {
+	height: 30vh;
+	background-color: #000000;
+}
+
+.chevron-container {
+	width: 5rem;
+	position: absolute;
+	bottom: 2vh;
+	right: 2vw;
+	border-radius: 2em;
+	background: rgba(240, 248, 255, 0.466);
+	text-align: center;
+	display: flex;
+	-webkit-box-flex: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chevron-up {
+	@include flexCentered;
+	font-size: 3rem;
+	transform: rotate(-90deg);
+	border: 4px solid $uiSecondary;
+	color: $uiSecondary;
+	border-radius: 50%;
+	height: 1em;
+	width: 3rem;
+	padding-bottom: 7px;
+	text-align: center;
+	// position: relative;
+	// right: calc(3vw - 91%);
+	margin: 1rem 0;
+	&:hover {
+		cursor: pointer;
+		border: 4px solid $uiPrimary;
+		color: $uiPrimary;
+
+		span.tooltip {
+			visibility: visible;
+		}
+	}
+}
+
+.chevHide {
+	display: none;
+}
+
+span.tooltip {
+	position: absolute;
+	font-size: 1.3rem;
+	background: rgba(213, 213, 213, 0.83);
+	width: 13rem;
+	transform: rotate(90deg);
+	bottom: 7.5em;
+	border-radius: 0.3rem;
+	visibility: hidden;
+	color: #464646;
+}
+
+.navMinimize {
+	div.ui-input-nav {
+		width: 100%;
+	}
+
+	ul.ui-input-nav-lists {
+		flex-direction: row ;
+	}
+
+	li.ui-input-nav-list {
+			&:nth-child(1){
+					border-bottom-left-radius: 0.7em;
+				}
+				&:nth-child(3) {
+					border-top-right-radius: 0;
+					border-right-color: none;
+				}
+
+				&:last-child{
+					border-bottom-right-radius: 0.7em;
+					border-top-right-radius: 0.7em;
+					
+				}
+	}
+
+	div.ui-input-form-container {
+		display: none;
+	}
 }
