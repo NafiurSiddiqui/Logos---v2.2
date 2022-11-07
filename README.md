@@ -45,7 +45,7 @@ Fixed.
 
 - React Router
 
-- Redux
+- Redux/ Redux toolkit
 
 - SASS.
 
