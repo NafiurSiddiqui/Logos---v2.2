@@ -1,0 +1,233 @@
+$inputBoxShadow: #d7caccbe;
+
+ul.ui-input-nav-lists {
+	@include flexSpaceAround;
+
+	> li {
+		font-size: 1.1em;
+	}
+}
+
+.ui-input {
+	border-radius: 1.2em;
+	transition: all 3ms linear;
+	box-shadow: 0px 6px 20px -2px rgba(0, 0, 0, 0.27);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.45) 0%,
+		rgba(255, 255, 255, 0.3735) 100%
+	);
+	transition: all 3s linear;
+	&-container {
+		background-color: $uiPrimary;
+		padding: 0.4em 0.3em;
+		border-radius: 1.2em;
+	}
+	&-nav {
+		line-height: 2.6em;
+		&-list {
+			border-right: 1px solid rgb(70, 68, 68);
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			color: #6a7072;
+			background-color: $uiPrimary;
+			&:hover {
+				background-color: #000000;
+				color: #e0e0e0;
+			}
+			&:nth-child(1) {
+				border-top-left-radius: 1em;
+			}
+			&:nth-child(3) {
+				border-top-right-radius: 1em;
+				border-right-color: rgb(11 11 11);
+			}
+
+			&.price {
+				display: none;
+
+				@media screen and (max-width: 860px) {
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+	&-form {
+		&-container {
+			padding: 1em 0;
+			text-align: center;
+			background-color: $uiSecondary;
+			border-bottom-left-radius: 1.2em;
+			border-bottom-right-radius: 1.2em;
+		}
+
+		&-heading {
+			margin-bottom: 1em;
+			color: rgb(121, 118, 118);
+			font-style: italic;
+			font-size: 1rem;
+			letter-spacing: 1px;
+		}
+
+		&.text {
+			text-align: center;
+			padding: 1em;
+
+			> input {
+				width: 100%;
+				height: 10rem;
+				border-radius: 0.8em;
+				border-top-style: hidden;
+				border-right-style: hidden;
+				border-left-style: hidden;
+				border-bottom-style: hidden;
+				box-shadow: inset 0 0 0 2px rgb(82, 79, 79);
+				outline: none;
+				padding: 2em;
+				background-color: rgb(49, 47, 47);
+				font-size: 1.5em;
+				color: rgb(172, 168, 168);
+				font-weight: 500;
+				text-align: center;
+
+				&:focus {
+					-webkit-box-shadow: inset 0px 2px 6px 3px $inputBoxShadow;
+					box-shadow: inset 0px 2px 6px 3px $inputBoxShadow;
+					background-color: #535353;
+					border: 1px solid rgba(128, 128, 128, 0.575);
+					color: rgb(241, 241, 241);
+				}
+			}
+		}
+
+		&.color,
+		&.fontFamily {
+			@include flexCentered;
+			flex-direction: column;
+		}
+	}
+}
+
+.ui-input-color-lists,
+.ui-input-fontFamily-lists {
+	width: 90%;
+	text-align: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(5em, 1fr));
+	grid-gap: 10px;
+	justify-content: center;
+}
+
+// active class for ui-input nav
+.nav-active {
+	background-color: $uiSecondary;
+	color: rgb(255, 255, 255);
+	cursor: auto;
+}
+
+.ui-input-form.text,
+.ui-input-form.fontFamily,
+.ui-input-form.color {
+	display: none;
+}
+
+//LOGICAL class
+.ui-active {
+	display: flex !important;
+}
+
+.form-hide {
+	height: 30vh;
+	background-color: #000000;
+}
+
+.chevron-container {
+	width: 5rem;
+	position: absolute;
+	bottom: 3vh;
+	right: 2vw;
+	border-radius: 2em;
+	background: rgba(240, 248, 255, 0.466);
+	text-align: center;
+	display: none;
+	-webkit-box-flex: flex;
+	justify-content: center;
+	align-items: center;
+
+	&:hover {
+		background-color: rgb(203, 203, 203);
+	}
+
+	@media screen and (max-width: 860px) {
+		display: flex;
+	}
+}
+
+.chevron-up {
+	@include flexCentered;
+	font-size: 3rem;
+	transform: rotate(-90deg);
+	border: 4px solid $uiSecondary;
+	color: $uiSecondary;
+	border-radius: 50%;
+	height: 1em;
+	width: 3rem;
+
+	margin: 1rem 0;
+	&:hover {
+		cursor: pointer;
+		border: 4px solid $uiPrimary;
+		color: $uiPrimary;
+		background-color: rgb(235, 235, 187);
+		span.tooltip {
+			visibility: visible;
+		}
+	}
+}
+
+.chevHide {
+	display: none;
+}
+
+span.tooltip {
+	position: absolute;
+	font-size: 1.3rem;
+	background: rgba(213, 213, 213, 0.83);
+	width: 13rem;
+	transform: rotate(90deg);
+	bottom: 7.5em;
+	border-radius: 0.3rem;
+	visibility: hidden;
+	color: #464646;
+}
+
+.navMinimize {
+	div.ui-input-nav {
+		width: 100%;
+	}
+
+	ul.ui-input-nav-lists {
+		flex-direction: row;
+	}
+
+	li.ui-input-nav-list {
+		&:nth-child(1) {
+			border-bottom-left-radius: 0.7em;
+		}
+		&:nth-child(3) {
+			border-top-right-radius: 0;
+			border-right-color: none;
+		}
+
+		&:last-child {
+			border-bottom-right-radius: 0.7em;
+			border-top-right-radius: 0.7em;
+		}
+	}
+
+	div.ui-input-form-container {
+		display: none;
+	}
+}

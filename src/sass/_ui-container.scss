@@ -1,0 +1,9 @@
+section.ui-container {
+	display: grid;
+	grid-template-columns: 25em 45em;
+	width: 70%;
+	grid-gap: 20px;
+	padding: 2rem 2rem;
+	min-height: 38rem;
+	justify-content: center;
+}
