@@ -1,15 +1,10 @@
 # CUSTOM NEON TEXT APP (version 2.2)
 
 Turn your text into a custom neon light and lit up your place with neon induced aura! This App can be used by people who runs business of building custom neon signboard, nameplate and such. This app is also highly modifiable according to the client's need.
-<<<<<<< HEAD
-v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of v2.1 and v2.2.
-=======
-v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of  v2.1 and v2.2.
->>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
-V2.2 release is going to address the issue of poor UX on smaller device.
 
-Vist: [Client website](...)
-Vist: [v2.2 website](...)
+
+
+Vist for live demo: [LogosV2.2](https://neontextv2.web.app/)
 
 ## Note for developer and clients
 
