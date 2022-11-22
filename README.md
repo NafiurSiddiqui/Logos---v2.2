@@ -1,7 +1,11 @@
 # CUSTOM NEON TEXT APP (version 2.2)
 
 Turn your text into a custom neon light and lit up your place with neon induced aura! This App can be used by people who runs business of building custom neon signboard, nameplate and such. This app is also highly modifiable according to the client's need.
+<<<<<<< HEAD
 v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of v2.1 and v2.2.
+=======
+v2 codwise was not opitmum since it was just made with props drilling which is taken care of with the release of  v2.1 and v2.2.
+>>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 V2.2 release is going to address the issue of poor UX on smaller device.
 
 Vist: [Client website](...)
@@ -32,7 +36,11 @@ Check out the links below for the licensing of the fonts used here that requires
 
 - unpredictable behaviour for the computed style of the height, needs double clicking to render the accurate size.
 
+<<<<<<< HEAD
 ## bugs status
+=======
+## Solution to bugs
+>>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 
 ---
 
@@ -41,8 +49,12 @@ Fixed.
 ### Some of the technical aspect i have implemented in this version of the webApp (almost)
 
 ---
+<<<<<<< HEAD
 
 - React
+=======
+- React 
+>>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 
 - React Router
 
@@ -70,11 +82,19 @@ Fixed.
 
 - Responsiveness ensured which adapts to all of the devices out there.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 #Instruction
 
 - clone the rep
 - delete package.json
+<<<<<<< HEAD
 - run -> npm install
+=======
+- run -> npm install 
+>>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 - once done, simply run -> npm start
 
 - you need to refresh if you are resizing the browser for live responsiveness in order to see the changes

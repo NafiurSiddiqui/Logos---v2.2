@@ -87,9 +87,6 @@ function UserTextAndBars() {
 		${colorActive} 0px 0px 75px`;
 
 	//FONTS
-	// let fontForLargeDevice = windowWidth > 2200 ? '7em' : '5em';
-
-	// const deviceWidth = windowWidth <= 600 ? '55px' : fontForLargeDevice;
 
 	let fontForLargeDevice = '5em';
 

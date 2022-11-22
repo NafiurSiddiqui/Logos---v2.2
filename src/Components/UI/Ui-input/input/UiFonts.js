@@ -66,7 +66,6 @@ function UiFonts(props) {
 		if (e.target.localName === 'li') {
 			//get the fontName
 			const targetClass = e.target.classList[1];
-
 			dispatch(setFontFamily(targetClass));
 			dispatch(setFontState(true));
 			setActiveButtonId(targetClass);
