@@ -31,25 +31,17 @@ Check out the links below for the licensing of the fonts used here that requires
 
 - unpredictable behaviour for the computed style of the height, needs double clicking to render the accurate size.
 
-<<<<<<< HEAD
-## bugs status
-=======
-## Solution to bugs
->>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 
----
+## bugs status
 
 Fixed.
 
 ### Some of the technical aspect i have implemented in this version of the webApp (almost)
 
 ---
-<<<<<<< HEAD
+
 
 - React
-=======
-- React 
->>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
 
 - React Router
 
@@ -77,20 +69,14 @@ Fixed.
 
 - Responsiveness ensured which adapts to all of the devices out there.
 
-<<<<<<< HEAD
-=======
 
->>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
+
 #Instruction
 
 - clone the rep
 - delete package.json
-<<<<<<< HEAD
-- run -> npm install
-=======
 - run -> npm install 
->>>>>>> cb24ae4a455ec433722b50333c1f6b3b0f539680
-- once done, simply run -> npm start
+- once done, simply run -> `npm start` to start the development server
 
 - you need to refresh if you are resizing the browser for live responsiveness in order to see the changes
 
